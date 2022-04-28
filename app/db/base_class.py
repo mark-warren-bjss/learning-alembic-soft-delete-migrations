@@ -35,10 +35,10 @@ class BaseModel(Base, AllFeaturesMixin):
         table_name = cls.__name__.lower()
         field_names = '_'.join(f.name for f in fields)
         cls.__table_args__ = getattr(cls, '__table_args__', ()) + (
-            Index(f"idx_{table_name}_{field_names}_notdeleted", *fields, 'deleted_at',
+            Index(f"idx_{table_name}_{field_names}_notdeleted", *fields,
                   unique=True,
                   postgresql_where='deleted_at IS NULL'),
-            Index(f"idx_{table_name}_{field_names}_deleted", *fields,
+            Index(f"idx_{table_name}_{field_names}_deleted", *fields, 'deleted_at',
                   unique=True,
                   postgresql_where='deleted_at IS NOT NULL'),
         )
