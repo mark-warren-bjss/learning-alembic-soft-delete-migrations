@@ -29,3 +29,16 @@ class BaseModel(Base, AllFeaturesMixin):
     )
 
     __mapper_args__ = {"eager_defaults": True}
+
+    @classmethod
+    def uniqueish(cls, *fields):
+        table_name = cls.__name__.lower()
+        field_names = '_'.join(f.name for f in fields)
+        cls.__table_args__ = getattr(cls, '__table_args__', ()) + (
+            Index(f"idx_{table_name}_{field_names}_notdeleted", *fields, 'deleted_at',
+                  unique=True,
+                  postgresql_where='deleted_at IS NULL'),
+            Index(f"idx_{table_name}_{field_names}_deleted", *fields,
+                  unique=True,
+                  postgresql_where='deleted_at IS NOT NULL'),
+        )
