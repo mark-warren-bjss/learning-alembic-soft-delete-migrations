@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import Any, Dict
 
-from sqlalchemy import Boolean, Column, DateTime, func, inspect
+from sqlalchemy import Column, DateTime, func, inspect, Index
 from sqlalchemy.orm import as_declarative, declared_attr  # type: ignore
 from sqlalchemy_mixins import AllFeaturesMixin
 
@@ -22,7 +22,7 @@ class Base:
 
 class BaseModel(Base, AllFeaturesMixin):
     __abstract__ = True
-    deleted = Column(Boolean(), default=False)
+    deleted_at = Column(DateTime(timezone=True))
     created_at = Column(DateTime(timezone=True), default=func.now())
     updated_at: datetime = Column(
         DateTime(timezone=True), default=func.now(), onupdate=func.now()
