@@ -10,3 +10,16 @@ Playground for experimenting with `delete` refactorinmg
     
     (cd local && docker-compose up -d)
  
+## Autogenerate migration
+
+    alembic revision -m 'Create Appeal Table' --autogenerate
+
+## Run migration
+
+    alembic upgrade head
+ 
+## Connect to database
+ 
+    jdbc:postgresql://localhost:5433/VANISH
+    dev / dev123
+
