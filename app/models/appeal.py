@@ -12,3 +12,6 @@ class Appeal(BaseModel):
     )
     excuse = Column(String, nullable=True)
     name = Column(String, nullable=False, unique=True)
+
+
+Appeal.uniqueish(Appeal.name)
