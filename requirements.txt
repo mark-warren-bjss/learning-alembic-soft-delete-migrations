@@ -1,3 +1,5 @@
 alembic==1.7.6
 psycopg2-binary==2.9.3
 SQLAlchemy==1.4.31
+alembic_utils==0.2.16
+sqlalchemy-mixins==1.5
