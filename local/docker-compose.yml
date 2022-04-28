@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  db:
+    image: "postgres:11.11"
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_DB: VANISH
+      POSTGRES_USER: dev
+      POSTGRES_PASSWORD: dev123
